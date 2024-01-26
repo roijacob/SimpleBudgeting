@@ -22,14 +22,17 @@ struct ContentView: View {
 }
 
 struct MainTabView: View {
+    var firestoreVM = FirestoreViewModel()
+    
     @ObservedObject var authManager: AuthManager
+    
     @AppStorage("themeSetting") private var themeSetting = ThemeSetting.system.rawValue
-
+    
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(viewModel: firestoreVM)
                 .tabItem { Label("Home", systemImage: "house") }
-            TransactionsView()
+            TransactionsView(viewModel: firestoreVM)
                 .tabItem { Label("Transaction", systemImage: "arrow.2.circlepath") }
             SettingsView(authManager: authManager)
                 .tabItem { Label("Settings", systemImage: "gear") }

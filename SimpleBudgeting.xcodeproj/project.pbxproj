@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F3C45522B63FBC6008DD14E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C45512B63FBC6008DD14E /* DataManager.swift */; };
+		7F3C45552B64097B008DD14E /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C45542B64097B008DD14E /* InputView.swift */; };
+		7FBDBB152B6382D40056CC84 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDBB142B6382D40056CC84 /* FirebaseService.swift */; };
+		7FBDBB172B63830D0056CC84 /* AddRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDBB162B63830D0056CC84 /* AddRecordView.swift */; };
 		7FF519572B60C131001B1234 /* SimpleBudgetingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF519562B60C131001B1234 /* SimpleBudgetingApp.swift */; };
 		7FF519592B60C131001B1234 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF519582B60C131001B1234 /* ContentView.swift */; };
 		7FF5195B2B60C132001B1234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FF5195A2B60C132001B1234 /* Assets.xcassets */; };
@@ -47,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F3C45512B63FBC6008DD14E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		7F3C45542B64097B008DD14E /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		7FBDBB142B6382D40056CC84 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		7FBDBB162B63830D0056CC84 /* AddRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordView.swift; sourceTree = "<group>"; };
 		7FF519532B60C131001B1234 /* SimpleBudgeting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleBudgeting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FF519562B60C131001B1234 /* SimpleBudgetingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBudgetingApp.swift; sourceTree = "<group>"; };
 		7FF519582B60C131001B1234 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +106,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F3C45502B63FB8E008DD14E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7FF519A52B60C87C001B1234 /* LoginView.swift */,
+				7FF519682B60C361001B1234 /* TransactionsView.swift */,
+				7FF519662B60C31F001B1234 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7F3C45532B63FBFA008DD14E /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				7FF519642B60C2FD001B1234 /* HomeView.swift */,
+				7F3C45542B64097B008DD14E /* InputView.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		7FA6C68C2B60F0530007388A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				7FF519A32B60C84C001B1234 /* AuthManager.swift */,
+				7F3C45512B63FBC6008DD14E /* DataManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		7FF5194A2B60C131001B1234 = {
 			isa = PBXGroup;
 			children = (
@@ -119,14 +155,14 @@
 			children = (
 				7FF519562B60C131001B1234 /* SimpleBudgetingApp.swift */,
 				7FF519582B60C131001B1234 /* ContentView.swift */,
-				7FF519642B60C2FD001B1234 /* HomeView.swift */,
-				7FF519662B60C31F001B1234 /* SettingsView.swift */,
-				7FF519682B60C361001B1234 /* TransactionsView.swift */,
-				7FF519A32B60C84C001B1234 /* AuthManager.swift */,
-				7FF519A52B60C87C001B1234 /* LoginView.swift */,
+				7F3C45532B63FBFA008DD14E /* HomePage */,
+				7F3C45502B63FB8E008DD14E /* Views */,
+				7FA6C68C2B60F0530007388A /* Firebase */,
 				7FF5196A2B60C6B4001B1234 /* GoogleService-Info.plist */,
 				7FF5195A2B60C132001B1234 /* Assets.xcassets */,
 				7FF5195C2B60C132001B1234 /* Preview Content */,
+				7FBDBB142B6382D40056CC84 /* FirebaseService.swift */,
+				7FBDBB162B63830D0056CC84 /* AddRecordView.swift */,
 			);
 			path = SimpleBudgeting;
 			sourceTree = "<group>";
@@ -243,11 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FF519692B60C361001B1234 /* TransactionsView.swift in Sources */,
+				7F3C45522B63FBC6008DD14E /* DataManager.swift in Sources */,
 				7FF519A62B60C87C001B1234 /* LoginView.swift in Sources */,
+				7FBDBB152B6382D40056CC84 /* FirebaseService.swift in Sources */,
 				7FF519A42B60C84C001B1234 /* AuthManager.swift in Sources */,
 				7FF519652B60C2FD001B1234 /* HomeView.swift in Sources */,
 				7FF519672B60C31F001B1234 /* SettingsView.swift in Sources */,
 				7FF519592B60C131001B1234 /* ContentView.swift in Sources */,
+				7F3C45552B64097B008DD14E /* InputView.swift in Sources */,
+				7FBDBB172B63830D0056CC84 /* AddRecordView.swift in Sources */,
 				7FF519572B60C131001B1234 /* SimpleBudgetingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
