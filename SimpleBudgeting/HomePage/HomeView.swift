@@ -13,22 +13,22 @@ struct HomeView: View {
 
     var body: some View {
         VStack {
-            // Your existing content
-            Spacer()
+            Spacer() // Pushes content to the middle
+            
+            Text("More features coming soon!")
+                .font(.title)
+                .fontWeight(.medium)
+                .padding(.bottom, 20) // Adds space below the title
+
             Button("Add") {
                 showingInputView = true
             }
             .padding()
+            
+            Spacer() // Continues to push content to the middle
         }
         .sheet(isPresented: $showingInputView) {
             InputView(viewModel: viewModel, isPresented: $showingInputView)
         }
     }
 }
-
-//
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView(names: $names)
-//    }
-//}

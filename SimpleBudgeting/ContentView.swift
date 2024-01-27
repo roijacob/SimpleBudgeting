@@ -12,10 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         if authManager.isAuthenticated {
-            // Main Tab View
             MainTabView(authManager: authManager)
         } else {
-            // Login View
             LoginView(authManager: authManager)
         }
     }
@@ -52,15 +50,6 @@ struct MainTabView: View {
         }
     }
 }
-
-
-
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
 
 
 #Preview {

@@ -12,7 +12,7 @@ struct TransactionsView: View {
 
     var body: some View {
         List(viewModel.messages, id: \.self) { message in
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Expense: \(message.text)")
                 Text("Cost: \(message.price)")
             }

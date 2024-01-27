@@ -5,42 +5,61 @@
 //  Created by Roi Jacob C. Olfindo on 1/26/24.
 //
 
-import Foundation
-
+import SwiftUI
 import FirebaseFirestore
-
-struct Message: Hashable {
-    var text: String
-    var price: String
-}
+import FirebaseAuth
 
 class FirestoreViewModel: ObservableObject {
     private var db = Firestore.firestore()
-    @Published var errorMessage: String? // Add this variable
+    @Published var errorMessage: String?
     @Published var messages: [Message] = []
-    @Published var prices: [String] = []
-
-    // Comment 4
-    func saveMessage(_ message: String, price: String, category: String, subcategory: String) {
-        let newMessage = ["text": message, "price": price, "category": category,
-                          "subcategory": subcategory, "timestamp": Timestamp()] as [String : Any]
-        db.collection("messages").addDocument(data: newMessage)
-    }
+    
+    // Saves a new message to Firestore
+    // Updates the saveMessage function to include date and account
+    func saveMessage(_ message: String, price: String, category: String, subcategory: String, note: String, date: Date, account: String) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            self.errorMessage = "User not authenticated"
+            return
+        }
         
-    func fetchData() {
-        db.collection("messages").order(by: "timestamp", descending: true).getDocuments { [weak self] (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                self?.messages = querySnapshot?.documents.compactMap { documentSnapshot in
-                    let text = documentSnapshot.get("text") as? String ?? ""
-                    let price = documentSnapshot.get("price") as? String ?? ""
-                    return Message(text: text, price: price)
-                } ?? []
+        let newMessage = [
+            "text": message,
+            "price": price,
+            "category": category,
+            "subcategory": subcategory,
+            "note": note,
+            "timestamp": Timestamp(),
+            "date": date,
+            "account": account,
+            "userID": userID  // Include the user ID
+        ] as [String : Any]
+        
+        db.collection("messages").addDocument(data: newMessage) { error in
+            if let error = error {
+                self.errorMessage = "Error saving message: \(error.localizedDescription)"
+                print(self.errorMessage ?? "")
             }
         }
     }
-}
-
     
-
+    
+    // Fetches messages from Firestore
+    func fetchData() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            self.errorMessage = "User not authenticated"
+            return
+        }
+        
+        db.collection("messages")
+            .whereField("userID", isEqualTo: userID)
+            .order(by: "timestamp", descending: true)
+            .getDocuments { [weak self] (querySnapshot, err) in
+                if let err = err {
+                    self?.errorMessage = "Error fetching messages: \(err.localizedDescription)"
+                    print(self?.errorMessage ?? "")
+                } else {
+                    self?.messages = querySnapshot?.documents.compactMap { Message(document: $0) } ?? []
+                }
+            }
+    }
+}
